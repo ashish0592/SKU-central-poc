@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         minHeight: '100vh'
     },
     content: {
-        marginTop: 20
+        // marginTop: 20
     },
     mainBlock: {
         backgroundColor: '#F7F8FC',
@@ -48,7 +48,7 @@ class App extends Component {
         const { selectedItem } = this.state;
         return (
             <Provider store={store}>
-                <Column flexGrow={1} style={{backgroundColor:'#F7F8FC'}}>
+                <Column style={{backgroundColor:'#F7F8FC'}}>
                     <Row horizontal="center" >
                          <BannerComponent/>
                     </Row>

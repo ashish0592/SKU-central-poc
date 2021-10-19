@@ -14,13 +14,13 @@ const styles = StyleSheet.create({
     },
     container: {
         backgroundColor: '#3F3F3F',
-        width: 285,
+        width: 200,
         height: 'calc(100% - 32px)'
     },
     containerMobile: {
         transition: 'left 0.5s, right 0.5s',
         position: 'absolute',
-        width: 255,
+        width: 150,
         height: 'calc(100% - 32px)',
         zIndex: 901
     },

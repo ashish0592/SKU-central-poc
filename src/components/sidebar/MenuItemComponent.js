@@ -5,8 +5,8 @@ import { StyleSheet, css } from 'aphrodite';
 
 const styles = StyleSheet.create({
     activeBar: {
-        height: 56,
-        width: 3,
+        height: 36,
+        width: 4,
         backgroundColor: '#DDE2FF',
         position: 'absolute',
         left: 0
@@ -18,17 +18,17 @@ const styles = StyleSheet.create({
         color: 'White'
     },
     container: {
-        height: 56,
+        height: 36,
         cursor: 'pointer',
         ':hover': {
             backgroundColor: 'rgba(221,226,255, 0.08)'
         },
-        paddingLeft: 32,
-        paddingRight: 32
+        paddingLeft: 12,
+        paddingRight: 12,
     },
     title: {
         fontFamily: 'Muli',
-        fontSize: 18,
+        fontSize: 12,
         letterSpacing: '0.2px',
         color: '#DDE2FF',
         marginLeft: 24

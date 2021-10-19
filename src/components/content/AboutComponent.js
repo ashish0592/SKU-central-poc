@@ -10,7 +10,8 @@ class AboutComponent extends React.Component {
     render() {
         return (
             <div>
-            <h2>Test Tool v1.0</h2>
+            <h3>SKU Central v1.0.0</h3>
+            <p>iQuadra Technologies Ltd</p>
             </div>
     );
   }

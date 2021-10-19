@@ -298,18 +298,18 @@ class SkuListingComponent extends React.Component {
             <>
             {this.props.isError ? <Alert severity="error">{this.props.errorList.join(', ')}</Alert>: null}
             {this.props.isSuccess ? <Alert severity="success">{this.props.successList.join(', ')}</Alert>: null}
-            <InlineCss stylesheet=" & .p-highlight {background-color: #289AD3} .p-datatable-thead  {height: 107px}">
+            <InlineCss stylesheet=" & .p-highlight {background-color: #289AD3} .p-datatable-thead  {height: 75px}">
 
             <div>
                 <div>
                     {
                         this.props.isLoading? <ProgressSpinner style={{marginLeft: '45%'}}/> : 
-                        <DataTable data-testid="table-data" editable={false} value={this.props.skuList} paginator={true} rows={5}  header={header} ref={(el) => { this.dt = el; }}
+                        <DataTable data-testid="table-data" editable={false} value={this.props.skuList} paginator={true} rows={10}  header={header} ref={(el) => { this.dt = el; }}
                             selection={this.state.selectedResource} selectionMode="single"
                             onSelection={e => {this.setState({selectedResource: e.value});}}
                             onRowSelect={this.onSkuSelect}
                             globalFilter={this.state.globalFilter} emptyMessage="No records found"
-                            scrollHeight="400" scrollable={true} style={{ width: '1500px'}} 
+                            scrollHeight="400" scrollable={true} style={{ width: '100%', zoom: '65%'}} 
                             exportFilename="SKU_Listing">
                             <Column key="active" field="active" header="active" style={{width: '125px'}} body={(e)=>this.isActive(e)} sortable={true}/>
                             <Column key="id" field="id" style={{width: '125px'}} header="id" sortable={true} />
@@ -323,7 +323,7 @@ class SkuListingComponent extends React.Component {
                     }
                 </div>
     
-                <Dialog title="add-dialog" maxWidth='xs' open={this.state.displayDialog}> 
+                <Dialog style={{zoom:'65%'}} title="add-dialog" maxWidth='xs' open={this.state.displayDialog}> 
                     <DialogTitle id="customized-dialog-title">
                         {this.state.newRecord.title}
                     </DialogTitle>
@@ -369,7 +369,7 @@ class SkuListingComponent extends React.Component {
                         {dialogFooter}
                     </DialogActions>
                 </Dialog>
-                <Dialog maxWidth='md' open={this.state.displayBulkDialog}> 
+                <Dialog style={{zoom:'65%'}} maxWidth='md' open={this.state.displayBulkDialog}> 
                     <DialogTitle id="customized-dialog-title">
                         {this.state.dialogTitle}
                     </DialogTitle>

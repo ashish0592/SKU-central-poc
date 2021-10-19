@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Muli',
         fontStyle: 'normal',
         fontWeight: 'bold',
-        fontSize: 24,
+        fontSize: 18,
         lineHeight: '30px',
         letterSpacing: 0.3,
         '@media (max-width: 768px)': {
