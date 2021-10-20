@@ -3,18 +3,18 @@ import createRequestBeginAction from './requestBegin'
 import createRequestEndAction from './requestEnd'
 import application from './../../environment';
 
-const saveAlternativeRef = (payload) => {
+export const saveSkuList = (payload) => {
     return { type: GET_SKU_LISTING, payload }
 }
 
-const getAlternativeRef = () => {
+const getSkuListing = () => {
     return (dispatch) => {
         (() => {
             dispatch(createRequestBeginAction(true))
             return fetch(application.apiBaseurl + 'getinfo')
                 .then(response => response.json())
                 .then(json => {
-                    dispatch(saveAlternativeRef(json));
+                    dispatch(saveSkuList(json));
                     dispatch(createRequestEndAction(false))
                 })
         })();
@@ -22,4 +22,4 @@ const getAlternativeRef = () => {
     }
 }
 
-export default getAlternativeRef;
+export default getSkuListing;
