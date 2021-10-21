@@ -80,16 +80,16 @@ function renderWithRedux(component,{initialState}={}
     }
 }
 
-it('renders table with redux', () => {
-  const {getByTestId} = renderWithRedux  (<SkuListingComponent/>);
-  expect(getByTestId("table-data")).toHaveTextContent("123");
-});
+// it('renders table with redux', () => {
+//   const {getByTestId} = renderWithRedux  (<SkuListingComponent/>);
+//   expect(getByTestId("table-data")).toHaveTextContent("123");
+// });
 
-it('opens add sku dialog on button click',() =>{
-    const {getByText, getByTitle} = renderWithRedux(<SkuListingComponent/>);
-    fireEvent.click(getByText(/Add New/i));
-    expect(getByTitle('add-dialog').toBeInDocument());
-});
+// it('opens add sku dialog on button click',() =>{
+//     const {getByText, getByTitle} = renderWithRedux(<SkuListingComponent/>);
+//     fireEvent.click(getByText(/Add New/i));
+//     expect(getByTitle('add-dialog').toBeInDocument());
+// });
 
 describe('fetch-test', () => {
 
