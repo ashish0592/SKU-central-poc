@@ -1,0 +1,9 @@
+export const REQUEST_BEGIN = 'REQUEST_BEGIN';
+export const REQUEST_END = 'REQUEST_END';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const INIT_LOGGED_IN_USER = 'INIT_LOGGED_IN_USER';
+export const GET_SKU_LISTING = "GET_SKU_LISTING";
+export const UPDATE_SKU_ERROR = "UPDATE_SKU_ERROR";
+export const ADD_SKU_ERROR = "ADD_SKU_ERROR";
+export const UPDATE_SKU_DONE = "UPDATE_SKU_DONE";
+export const ADD_SKU_DONE = "ADD_SKU_DONE";

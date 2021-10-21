@@ -1,0 +1,54 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .body {
+    width: auto;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+    padding: 16px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  @media (min-width: 448px) {
+    .body {
+      width: 350px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+  }
+  
+  .loginForm {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .userOptions {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size: 20;
+  }
+  
+  .avatar {
+    margin: auto;
+    padding: 1rem;
+    background-color: #2b7913 !important;
+  }
+  
+  .browserInfo {
+    align-items: center;
+    text-align: center;
+    color: grey;
+  }
+  
