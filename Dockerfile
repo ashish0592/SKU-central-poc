@@ -17,7 +17,7 @@ RUN node -v
 COPY package.json /usr/src/app/
 COPY package-lock.json /usr/src/app/
 
-RUN npm install
+# RUN npm install
 
 # Bundle app source
 COPY . /usr/src/app
