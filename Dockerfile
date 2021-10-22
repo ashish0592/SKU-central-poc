@@ -1,20 +1,37 @@
-FROM node:9.4
+# Extending image
+FROM node:carbon
+
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get -y install autoconf automake libtool nasm make pkg-config git apt-utils
 
 # Create app directory
+RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-# Expose port for service
+# Versions
+RUN npm -v
+RUN node -v
+
+# Install app dependencies
+COPY package.json /usr/src/app/
+COPY package-lock.json /usr/src/app/
+
+
+# Bundle app source
+COPY . /usr/src/app
+
+# Port to listener
 EXPOSE 3000
 
-# Install and configure `serve`.
-RUN npm install -g serve
+# Environment variables
+ENV NODE_ENV production
+ENV PORT 3000
+ENV PUBLIC_PATH "/"
 
-# Copy source code to image
-COPY . .
+RUN npm run start:build
 
-# Install dependencies
-RUN npm install
+# Main command
+CMD [ "npm", "run", "start:server" ]
 
-# Build app and start server from script
-CMD ["/usr/src/app/run"]
 
