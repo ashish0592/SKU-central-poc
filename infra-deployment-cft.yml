@@ -231,7 +231,6 @@ Resources:
           Key: String
           Value: String
     Type: "AWS::RDS::DBSubnetGroup"
-	
   myDBEC2SecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
