@@ -1,37 +1,15 @@
-# Extending image
-FROM node:carbon
-
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN apt-get -y install autoconf automake libtool nasm make pkg-config git apt-utils
-
-# Create app directory
-RUN mkdir -p /usr/src/app
+FROM node:10 AS ui-build
 WORKDIR /usr/src/app
+COPY my-app/ ./my-app/
+RUN cd my-app && npm install && npm run build
 
-# Versions
-RUN npm -v
-RUN node -v
+FROM node:10 AS server-build
+WORKDIR /root/
+COPY --from=ui-build /usr/src/app/my-app/build ./my-app/build
+COPY api/package*.json ./api/
+RUN cd api && npm install
+COPY api/server.js ./api/
 
-# Install app dependencies
-COPY package.json /usr/src/app/
-COPY package-lock.json /usr/src/app/
+EXPOSE 3080
 
-
-# Bundle app source
-COPY . /usr/src/app
-
-# Port to listener
-EXPOSE 3000
-
-# Environment variables
-ENV NODE_ENV production
-ENV PORT 3000
-ENV PUBLIC_PATH "/"
-
-# RUN npm run start:build
-
-# Main command
-CMD [ "npm", "run", "start:server" ]
-
-
+CMD ["node", "./api/server.js"]
