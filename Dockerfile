@@ -13,7 +13,8 @@ WORKDIR /root/
 COPY --from=ui-build /usr/ /usr/src
 # RUN MKDIR -p api
 # COPY package*.json ./api/
-RUN cd api && npm install
+RUN cd /usr/src/api && npm install
+RUN ls
 COPY src/serviceWorker.js ./api/
 
 EXPOSE 8080
