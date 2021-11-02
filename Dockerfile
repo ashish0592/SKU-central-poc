@@ -2,7 +2,7 @@ FROM node:10 AS ui-build
 WORKDIR /usr/src/
 COPY src/ ./src/
 RUN mkdir -p api
-COPY package*.json .
+COPY package*.json /usr/src/
 RUN npm install && npm run build
 
 FROM node:10 AS server-build
