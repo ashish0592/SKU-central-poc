@@ -1,7 +1,8 @@
 FROM node:10 AS ui-build
 WORKDIR /usr/src/
 COPY src/ ./src/
-COPY public/ /usr/src/
+RUN mkdir -p public
+COPY public/ /usr/src/public
 RUN pwd
 RUN mkdir -p api
 COPY package*.json /usr/src/
