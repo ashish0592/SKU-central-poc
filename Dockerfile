@@ -6,9 +6,11 @@ COPY public/ /usr/src/public
 RUN pwd
 RUN mkdir -p api
 COPY package*.json /usr/src/
+RUN chmod -R 777 /usr/
 RUN npm install && npm run build
 
 FROM node:10 AS server-build
+# USER root
 WORKDIR /root/
 COPY --from=ui-build /usr/ /usr/src
 # RUN MKDIR -p api
