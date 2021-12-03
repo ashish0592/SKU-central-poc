@@ -24,4 +24,4 @@ COPY src/*.js /usr/src/api/
 
 EXPOSE 8080
 
-CMD ["node", "./usr/src/api/index.js"]
+CMD ["node", "/usr/src/api/index.js"]
