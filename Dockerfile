@@ -23,5 +23,4 @@ RUN pwd; ls -l
 COPY src/*.js /usr/src/api/
 
 EXPOSE 8080
-
 CMD ["node", "/usr/src/api/index.js"]
