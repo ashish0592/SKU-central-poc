@@ -45,13 +45,13 @@ const resources = (state = initialState, action) => {
             return {...state,resources: { ...state.resources}, error:
             {
                 isError: true,
-                errorList:[...state.error.errorList, `Could not add the SKU: ${action.payload}`]
+                errorList:[...state.error.errorList, `Could not add the SKU`]
             }}
         case ADD_SKU_DONE:
             return {...state,resources: { ...state.resources}, success:
             {
                 isSuccess: true,
-                successList:[...state.success.successList, `Successfully added the SKU: ${action.payload}`]
+                successList:[...state.success.successList, `Successfully added the SKU`]
             }}
         case UPDATE_SKU_DONE:            
             return {...state,resources: { ...state.resources}, success:

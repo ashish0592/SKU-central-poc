@@ -23,10 +23,10 @@ const putSkuListing = (data) => {
               })
             .then(response => {
                 if(!response.ok) {
-                    dispatch(updateSkuError(data.id)); 
+                    dispatch(updateSkuError(data.customer_sku)); 
                 }
                 else {
-                    dispatch(updateSkuDone(data.id));
+                    dispatch(updateSkuDone(data.customer_sku));
                     dispatch(getSkuListing());
                 }   
                  dispatch(createRequestEndAction(false))
