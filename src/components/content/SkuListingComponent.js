@@ -36,7 +36,6 @@ class SkuListingComponent extends React.Component {
         super(props);
         this.state = {
             newRecord: {customer_sku: '',id: '',revision:'',customer:'',description:'',created_by:'',updated_by:'',number:'', active:''},
-            globalFilter: '',
             displayDialog:false, displayBulkDialog: false,
             idError: false, idRequired: false, dialogType:'',
             importedData: [],
@@ -80,7 +79,7 @@ class SkuListingComponent extends React.Component {
             this.setState({
                 displayDialog: true,
                 dialogType: 'ADD',
-                newRecord: {...this.state.newRecord, title: 'Add SKU Listing', active:true, created_by:'suchi'}
+                newRecord: {customer_sku: '',id: '',revision:'',customer:'',description:'',updated_by:'',number:'', title: 'Add SKU Listing', active:true, created_by:'iQuadra'}
             });
     }
 
@@ -112,7 +111,7 @@ class SkuListingComponent extends React.Component {
             this.setState({
                 displayDialog: true,
                 dialogType: 'EDIT',
-                newRecord: {...e.data, title: 'Maintain SKU Listing', updated_by:'suchi'}
+                newRecord: {...e.data, title: 'Maintain SKU Listing', updated_by:'iQuadra'}
             });
     }
 
@@ -178,7 +177,8 @@ class SkuListingComponent extends React.Component {
 
     updateProperty(property, target) {
         if (!!target.value && target.value !== ''){
-                this.setState({newRecord: {...this.state.newRecord, [property]: target.value}})
+                // this.setState({newRecord: {...this.state.newRecord, [property]: target.value}})
+                this.state.newRecord[property] = target.value;
         }
         else {
             this.state.newRecord[property] = '';
@@ -189,7 +189,8 @@ class SkuListingComponent extends React.Component {
         // }
 
         if(property === 'number'){
-            this.setState({newRecord: {...this.state.newRecord, [property]: Number(target.value)}})
+            // this.setState({newRecord: {...this.state.newRecord, [property]: Number(target.value)}})
+            this.state.newRecord[property] = Number(target.value);
         }
     }
 
