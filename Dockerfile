@@ -1,26 +1,17 @@
-FROM node:10 AS ui-build
-WORKDIR /usr/src/
-COPY src /usr/src
-ADD src /usr/src/src
-RUN mkdir -p public
-COPY public/ /usr/src/public
-RUN mkdir -p api
-COPY package*.json /usr/src/
-#RUN chmod -R 777 /usr/
-RUN pwd; ls -l
-RUN npm install && npm run build
+# build environment
+FROM node:12.18.1 as builder
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
+COPY package.json /usr/src/app/package.json
+RUN npm install --silent
+RUN npm install react-scripts@1.1.1 -g --silent
+COPY . /usr/src/app
+RUN npm run build
 
-FROM node:10 AS server-build
-# USER root
-WORKDIR /root/
-COPY --from=ui-build /usr/src/ /usr/src/
-RUN pwd
-RUN ls -l
-# RUN MKDIR -p api
-# COPY package*.json ./api/
-RUN cd /usr/src/api && npm install
-RUN pwd; ls -l
-COPY src/*.js /usr/src/api/
 
-EXPOSE 8080
-CMD ["node", "/usr/src/api/index.js"]
+# production environment
+FROM nginx:1.13.9-alpine
+COPY --from=builder /usr/src/app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
