@@ -21,10 +21,10 @@ const postSkuListing = (data) => {
               })
             .then(response => {
                 if(!response.ok) {
-                    dispatch(addSkuError(data.id));               
+                    dispatch(addSkuError());               
                 }
                 else {
-                    dispatch(addSkuDone(data.id));
+                    dispatch(addSkuDone());
                     dispatch(getSkuListing());
                 }   
                  dispatch(createRequestEndAction(false))

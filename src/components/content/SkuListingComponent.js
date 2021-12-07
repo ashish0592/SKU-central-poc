@@ -35,7 +35,7 @@ class SkuListingComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            newRecord: {id:'',revision:'',customer:'',description:'',created_by:'',updated_by:'',number:'', active:''},
+            newRecord: {customer_sku: '',id: '',revision:'',customer:'',description:'',created_by:'',updated_by:'',number:'', active:''},
             globalFilter: '',
             displayDialog:false, displayBulkDialog: false,
             idError: false, idRequired: false, dialogType:'',
@@ -65,14 +65,14 @@ class SkuListingComponent extends React.Component {
         })
     }
 
-    checkId=(value)=>{
-        this.initErrors();
-        !!value && this.props.skuList.map((item)=> {
-            if(item.id === value){
-                this.setState({idError: true})
-            }
-        })
-    }
+    // checkId=(value)=>{
+    //     this.initErrors();
+    //     !!value && this.props.skuList.map((item)=> {
+    //         if(item.id === value){
+    //             this.setState({idError: true})
+    //         }
+    //     })
+    // }
 
     addNew(){
             this.props.dispatch(clearErrors());
@@ -184,9 +184,9 @@ class SkuListingComponent extends React.Component {
             this.state.newRecord[property] = '';
         }
 
-        if(property === 'id'){
-            this.setState({idError: false},() => this.checkId(target.value))
-        }
+        // if(property === 'id'){
+        //     this.setState({idError: false},() => this.checkId(target.value))
+        // }
 
         if(property === 'number'){
             this.setState({newRecord: {...this.state.newRecord, [property]: Number(target.value)}})
@@ -206,10 +206,10 @@ class SkuListingComponent extends React.Component {
     checkResource(resource){
         this.error = false;
         this.props.dispatch(clearErrors());
-        if (this.checkEmpty(resource.id)){
-            this.error = true;
-            this.setState({idRequired: true})
-        }
+        // if (this.checkEmpty(resource.id)){
+        //     this.error = true;
+        //     this.setState({idRequired: true})
+        // }
     }
 
     checkEmpty(fieldValue){
@@ -311,8 +311,9 @@ class SkuListingComponent extends React.Component {
                             globalFilter={this.state.globalFilter} emptyMessage="No records found"
                             scrollHeight="400" scrollable={true} style={{ width: '100%', zoom: '65%'}} 
                             exportFilename="SKU_Listing">
-                            <Column key="active" field="active" header="active" style={{width: '125px'}} body={(e)=>this.isActive(e)} sortable={true}/>
-                            <Column key="id" field="id" style={{width: '125px'}} header="id" sortable={true} />
+                            <Column key="active" field="active" header="active" style={{width: '100px'}} body={(e)=>this.isActive(e)} sortable={true}/>
+                            <Column key="customer_sku" field="customer_sku" style={{width: '150px'}} header="customer_sku" sortable={true} />
+                            {/* <Column key="id" field="id" style={{width: '125px'}} header="id" sortable={true} /> */}
                             <Column key="revision" field="revision" style={{width: '150px'}} header="revision" sortable={true} />
                             <Column key="customer" field="customer" style={{width: '150px'}} header="customer" sortable={true} />
                             <Column key="description" field="description" style={{width: '200px'}} header="description" sortable={true} />
@@ -323,7 +324,7 @@ class SkuListingComponent extends React.Component {
                     }
                 </div>
     
-                <Dialog style={{zoom:'65%'}} title="add-dialog" maxWidth='xs' open={this.state.displayDialog}> 
+                <Dialog style={{zoom:'65%'}} maxWidth='xs' open={this.state.displayDialog}> 
                     <DialogTitle id="customized-dialog-title">
                         {this.state.newRecord.title}
                     </DialogTitle>
@@ -333,7 +334,12 @@ class SkuListingComponent extends React.Component {
                         }
                         {
                             <div>
-                        <FormControl required fullWidth>
+                        {this.state.dialogType==='EDIT' &&
+                            <TextField disabled required margin="dense" id="customer_sku" label="Customer Sku" 
+                                defaultValue={this.state.newRecord.customer_sku} variant="outlined" fullWidth onBlur={(e)=>{this.updateProperty('customer_sku', e.target)}}
+                            />
+                        }
+                        {/* <FormControl required fullWidth>
                             <TextField disabled={this.state.dialogType==='EDIT'} required margin="dense" id="id" label="ID" 
                             defaultValue={this.state.newRecord.id} variant="outlined" fullWidth onBlur={(e)=>{this.updateProperty('id', e.target)}}
                             />
@@ -341,17 +347,17 @@ class SkuListingComponent extends React.Component {
                                     {this.state.idError === true ? "Id already exists" : null}
                                     {this.state.idRequired === true ? "Required" : null}
                           </FormHelperText>
-                        </FormControl>
-                        <TextField margin="dense" id="revision" label="Revision" 
+                        </FormControl> */}
+                        <TextField disabled={this.state.dialogType==='EDIT'} margin="dense" id="revision" label="Revision" 
                         defaultValue={this.state.newRecord.revision} onBlur={(e)=>this.updateProperty('revision', e.target)} variant="outlined" fullWidth
                          />
-                         <TextField margin="dense" id="customer" label="Customer" 
+                         <TextField disabled={this.state.dialogType==='EDIT'} margin="dense" id="customer" label="Customer" 
                         defaultValue={this.state.newRecord.customer} variant="outlined" fullWidth onBlur={(e)=>this.updateProperty('customer', e.target)}
                          />
                         <TextField margin="dense" id="description" label="Description" 
                         defaultValue={this.state.newRecord.description} onBlur={(e)=>this.updateProperty('description', e.target)} variant="outlined" fullWidth
                          />
-                        <TextField margin="dense" id="number" label="Number" type="number"
+                        <TextField disabled={this.state.dialogType==='EDIT'} margin="dense" id="number" label="Number" type="number"
                         defaultValue={this.state.newRecord.number} onBlur={(e)=>this.updateProperty('number', e.target)} variant="outlined" fullWidth
                          />
                          <FormControlLabel control={
