@@ -5,7 +5,6 @@ import {
   Paper,
   Typography,
   Button,
-  Avatar,
   TextField,
   FormHelperText,
   FormControlLabel,
@@ -18,7 +17,7 @@ import {
 import AccountIcon from '@material-ui/icons/AccountCircle'
 import "./sign-in.css";
 import Bowser from "bowser";
-import { Visibility, VisibilityOff, AirlineSeatReclineNormal } from "@material-ui/icons";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 const materialStyles = (theme) => ({
   button: {
@@ -118,7 +117,6 @@ class SignInComponent extends Component {
       }
       else if (userData.user === "User" || userData.user === "existingUser") {
         const location = {
-          //pathname: "/userHome",
           pathname: "/myProfile",
           state: { userData },
         };
