@@ -4,8 +4,6 @@ import { Row } from 'simple-flexbox';
 import { StyleSheet, css } from 'aphrodite';
 import getResourceListing from './../../redux/selectors/resource'
 import {connect} from 'react-redux';
-import getLoggedInUserdata from '../../redux/actions/getLoggedInUserdata';
-
 
 const styles = StyleSheet.create({
     container: {
@@ -64,12 +62,6 @@ class HeaderComponent extends React.Component {
     return (
         <Row className={css(styles.container)} vertical="center" horizontal="space-between" {...this.props.otherProps}>
             <span className={css(styles.title)}>{this.props.title}</span>
-            {/* <Row vertical="center">
-                <div className={css(styles.separator)}></div>
-                <Row vertical="center">
-                    <span className={css(styles.name, styles.cursorPointer)}>{this.props.loggedInUserData.name}</span>
-                </Row>
-            </Row> */}
         </Row>
         
     );

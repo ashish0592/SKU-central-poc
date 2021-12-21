@@ -8,8 +8,6 @@ import './App.css';
 import BannerComponent from './components/header/BannerComponent';
 import {Provider } from 'react-redux';
 import store from './redux/store';
-import SignInComponent from './components/sign-in/SignInComponent'
-
 
 const styles = StyleSheet.create({
     container: {

@@ -14,17 +14,11 @@ import Alert from '@material-ui/lab/Alert';
 import { FileUpload } from 'primereact/fileupload';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
-import { withStyles,
-    FormControl,
-    FormHelperText,
-    FormControlLabel, } from '@material-ui/core';
+import { withStyles, FormControlLabel, } from '@material-ui/core';
 import {InputText} from 'primereact/inputtext';
 import getResourceListing from '../../redux/selectors/resource'
 import InlineCss from "react-inline-css";
-import IconButton from '@material-ui/core/IconButton';
 import Switch from '@material-ui/core/Switch';
-import EditIcon from '@material-ui/icons/Edit';
-import { Row } from 'simple-flexbox';
 import getSkuListing from '../../redux/actions/getSkuListing';
 import postSkuListing from '../../redux/actions/postSkuListing';
 import putSkuListing from '../../redux/actions/putSkuListing'
@@ -63,15 +57,6 @@ class SkuListingComponent extends React.Component {
             idRequired: false
         })
     }
-
-    // checkId=(value)=>{
-    //     this.initErrors();
-    //     !!value && this.props.skuList.map((item)=> {
-    //         if(item.id === value){
-    //             this.setState({idError: true})
-    //         }
-    //     })
-    // }
 
     addNew(){
             this.props.dispatch(clearErrors());
@@ -140,9 +125,6 @@ class SkuListingComponent extends React.Component {
         }))
         if (this.state.dialogType==="BULK_ADD"){
             this.finalList.map((obj)=>{
-                // this.setState({
-                //     obj:{...obj, active: obj.active.toLowerCase()=="true", number: Number(obj.number)}
-                // },()=>this.props.dispatch(postSkuListing(obj, true)))
                 this.props.dispatch(postSkuListing(obj))
             });
             this.setState({
@@ -151,9 +133,6 @@ class SkuListingComponent extends React.Component {
         }
         if(this.state.dialogType==="BULK_UPDATE"){
             this.state.importedData.map((obj)=>{
-                // this.setState({
-                //     obj:{...obj, active: obj.active.toLowerCase()=="true", number: Number(obj.number)}
-                // },()=>this.bulkSave(obj))
                 this.props.dispatch(putSkuListing(obj))
             });
             this.setState({
@@ -177,19 +156,13 @@ class SkuListingComponent extends React.Component {
 
     updateProperty(property, target) {
         if (!!target.value && target.value !== ''){
-                // this.setState({newRecord: {...this.state.newRecord, [property]: target.value}})
                 this.state.newRecord[property] = target.value;
         }
         else {
             this.state.newRecord[property] = '';
         }
 
-        // if(property === 'id'){
-        //     this.setState({idError: false},() => this.checkId(target.value))
-        // }
-
         if(property === 'number'){
-            // this.setState({newRecord: {...this.state.newRecord, [property]: Number(target.value)}})
             this.state.newRecord[property] = Number(target.value);
         }
     }
@@ -207,10 +180,6 @@ class SkuListingComponent extends React.Component {
     checkResource(resource){
         this.error = false;
         this.props.dispatch(clearErrors());
-        // if (this.checkEmpty(resource.id)){
-        //     this.error = true;
-        //     this.setState({idRequired: true})
-        // }
     }
 
     checkEmpty(fieldValue){
@@ -282,7 +251,6 @@ class SkuListingComponent extends React.Component {
                         <InputText type="search" onInput={(e) => this.setState({globalFilter: e.target.value})} placeholder="Global Search" size="50"/>
                         
                         <Button onClick={this.addNew} style={{ marginLeft: 10, textAlign: 'left', backgroundColor: '#289AD3', color: 'white', fontWeight: 'bold', marginRight:10}}  variant="contained"><i className="pi pi-plus-circle" style={{margin:'0px 5px 0 0px'}}></i>Add New</Button>
-                        {/* <Button style={{padding:0}} variant="contained"><FileUpload chooseOptions={{ label: 'BULK INSERT', icon: 'pi pi-file-o', style:{ textAlign: 'left', backgroundColor: '#289AD3', color: 'white', fontWeight: 'bold', fontSize: '14px', padding: '5px'}}} mode="basic" auto url="https://primefaces.org/primereact/showcase/upload.php" name="sku" accept=".csv" className="p-mr-2" onUpload={this.importCSV} /> </Button> */}
                         <Button onClick={this.onBulkInsert} style={{ marginLeft: 10, textAlign: 'left', backgroundColor: '#289AD3', color: 'white', fontWeight: 'bold', marginRight:10}}  variant="contained"><i className="pi pi pi-file-o" style={{margin:'0px 5px 0 0px'}}></i>Bulk Insert</Button>
                         <Button onClick={this.onBulkUpdate} style={{ marginLeft: 10, textAlign: 'left', backgroundColor: '#289AD3', color: 'white', fontWeight: 'bold', marginRight:10}}  variant="contained"><i className="pi pi pi-file-o" style={{margin:'0px 5px 0 0px'}}></i>Bulk Update</Button>
                         <Button onClick={this.export} style={{ marginLeft: 10, textAlign: 'left', backgroundColor: '#289AD3', color: 'white', fontWeight: 'bold', marginRight:10}}  variant="contained"><i className="pi pi-external-link" style={{margin:'0px 5px 0 0px'}}></i>Export</Button>
@@ -312,9 +280,8 @@ class SkuListingComponent extends React.Component {
                             globalFilter={this.state.globalFilter} emptyMessage="No records found"
                             scrollHeight="400" scrollable={true} style={{ width: '100%', zoom: '65%'}} 
                             exportFilename="SKU_Listing">
-                            <Column key="active" field="active" header="active" style={{width: '100px'}} body={(e)=>this.isActive(e)} sortable={true}/>
+                            <Column key="active" field="active" header="active" style={{width: '120px'}} body={(e)=>this.isActive(e)} sortable={true}/>
                             <Column key="customer_sku" field="customer_sku" style={{width: '150px'}} header="customer_sku" sortable={true} />
-                            {/* <Column key="id" field="id" style={{width: '125px'}} header="id" sortable={true} /> */}
                             <Column key="revision" field="revision" style={{width: '150px'}} header="revision" sortable={true} />
                             <Column key="customer" field="customer" style={{width: '150px'}} header="customer" sortable={true} />
                             <Column key="description" field="description" style={{width: '200px'}} header="description" sortable={true} />
@@ -340,15 +307,6 @@ class SkuListingComponent extends React.Component {
                                 defaultValue={this.state.newRecord.customer_sku} variant="outlined" fullWidth onBlur={(e)=>{this.updateProperty('customer_sku', e.target)}}
                             />
                         }
-                        {/* <FormControl required fullWidth>
-                            <TextField disabled={this.state.dialogType==='EDIT'} required margin="dense" id="id" label="ID" 
-                            defaultValue={this.state.newRecord.id} variant="outlined" fullWidth onBlur={(e)=>{this.updateProperty('id', e.target)}}
-                            />
-                          <FormHelperText style={{ color: "red", display: "flex", alignSelf: "flex-end", margin: "0 0 0.25rem 0" }}>
-                                    {this.state.idError === true ? "Id already exists" : null}
-                                    {this.state.idRequired === true ? "Required" : null}
-                          </FormHelperText>
-                        </FormControl> */}
                         <TextField disabled={this.state.dialogType==='EDIT'} margin="dense" id="revision" label="Revision" 
                         defaultValue={this.state.newRecord.revision} onBlur={(e)=>this.updateProperty('revision', e.target)} variant="outlined" fullWidth
                          />
@@ -386,7 +344,7 @@ class SkuListingComponent extends React.Component {
                         }  
                         {
                             <div>
-                                <FileUpload chooseOptions={{ label: 'LOAD CSV', icon: 'pi pi-file-o', style:{ textAlign: 'left', backgroundColor: '#289AD3', color: 'white', fontWeight: 'bold'}}} mode="basic" auto url="https://primefaces.org/primereact/showcase/upload.php" name="sku" accept=".csv" className="p-mr-2" onUpload={this.importCSV} />
+                                <FileUpload chooseOptions={{ label: 'LOAD CSV', icon: 'pi pi-file-o', style:{ textAlign: 'left', backgroundColor: '#289AD3', color: 'white', fontWeight: 'bold'}}} mode="basic" auto url="https://primefaces.org/primereact/upload.php" name="sku" accept=".csv" className="p-mr-2" onUpload={this.importCSV} />
                                 {this.state.importedCols.length && <DataTable style={{marginTop: 10}} value={this.state.importedData} emptyMessage="No records" paginator rows={5} alwaysShowPaginator={false}>
                         {
                             this.state.importedCols.map((col, index) => <Column key={index} field={col.field} header={col.header} />)

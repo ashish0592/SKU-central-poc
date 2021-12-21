@@ -99,7 +99,6 @@ describe('fetch-test', () => {
     })
 
     it('Dispatches GET_SKU_LISTING after fetching SKUs', () => {
-        // Response body sample
         const response = [
             {
                 id:"123",
@@ -116,12 +115,5 @@ describe('fetch-test', () => {
         fetchMock.getOnce('/skus',
                 { body: response})
 
-        // const expectedActions = [
-        //  { type: resource.GET_SKU_LISTING, payload: response}
-        // ]
-        // store.dispatch(getSkuListing())
-        //      .then(() => {
-        //          expect(store.getActions()).toEqual(expectedActions)
-        //      })
     })
 })

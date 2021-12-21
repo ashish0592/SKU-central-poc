@@ -1,7 +1,6 @@
 import React from 'react';
 import { Column, Row } from 'simple-flexbox';
 import { StyleSheet, css } from 'aphrodite';
-import SidebarHeaderComponent from './SidebarHeaderComponent';
 import MenuItemComponent from './MenuItemComponent';
 import IconBurger from '../../assets/icon-burger';
 
@@ -89,23 +88,7 @@ class SidebarComponent extends React.Component {
                 <Row className={css(styles.mainContainer)} breakpoints={{ 768: css(styles.mainContainerMobile, expanded && styles.mainContainerExpanded) }}>
                     {(isMobile && !expanded) && this.renderBurger()}
                     <Column className={css(styles.container)} breakpoints={{ 768: css(styles.containerMobile, expanded ? styles.show : styles.hide) }}>
-                        {/* <SidebarHeaderComponent title="SKU Central" /> */}
                         <Column className={css(styles.menuItemList)}>
-                            {/* <MenuItemComponent
-                                title="Role Maintenance"
-                                onClick={() => this.onItemClicked('Role Maintenance')}
-                                active={this.props.selectedItem === 'Role Maintenance'}
-                            />
-                            <MenuItemComponent
-                                title="Admin Maintenance"
-                                onClick={() => this.onItemClicked('Admin Maintenance')}
-                                active={this.props.selectedItem === 'Admin Maintenance'}
-                            />
-                            <MenuItemComponent
-                                title="Mapping Maintenance"
-                                onClick={() => this.onItemClicked('Mapping Maintenance')}
-                                active={this.props.selectedItem === 'Mapping Maintenance'}
-                            /> */}
                             <MenuItemComponent
                                 title="Maintain SKU Listing"
                                 onClick={() => this.onItemClicked('Maintain SKU Listing')}
@@ -116,11 +99,6 @@ class SidebarComponent extends React.Component {
                                 onClick={() => this.onItemClicked('About')}
                                 active={this.props.selectedItem === 'About'}
                             />
-                            {/* <MenuItemComponent
-                                title="Mapping User Type Maintenance"
-                                onClick={() => this.onItemClicked('Mapping User Type Maintenance')}
-                                active={this.props.selectedItem === 'Mapping User Type Maintenance'}
-                            /> */}
                         </Column>
                     </Column>
                     {isMobile && expanded && <div className={css(styles.outsideLayer)} onClick={this.toggleMenu}></div>}
